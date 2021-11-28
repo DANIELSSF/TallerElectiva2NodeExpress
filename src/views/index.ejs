@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('templates/header') %>
+  <title>Comics Marvel</title>
+</head>
+
+<body>
+
+  <%- include('templates/navigation') %>
+
+  <div class="container p-4">
+    <div class="row">
+
+    <%if (Comics.length > 0) {%>
+
+    <% Comics.forEach(function(Comics) { %>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-dark text-white">
+          <%= Comics.title %>
+        </div>
+        <img class="card-img-top" src="<%= Comics.image %>">
+        <div class="card card-body"> Descripción:
+          <%= Comics.description %>
+        </div>
+        <div class="card card-body">
+          Genero: <%= Comics.gender %> <p> Autor: <%= Comics.autor %></p>
+        </div>
+        <div class="card-footer">
+          <a href="/delete/<%= Comics.id %>" onclick="alert('Comic Borrado exitosamente')" class="btn btn-danger btn-block">
+            Borrar
+          </a>
+        </div>
+      </div>
+    </div>
+    <%})%>
+
+    <%} else {%>
+    <div class="card card-body text-center">
+      <p>No hay comics. <a href="/newComic">Añadir nuevo comic</a></p>
+    </div>
+    <%}%>
+    </div>
+  </div>
+  <%- include('templates/footer') %>
